@@ -10,9 +10,9 @@ window.onscroll = () => {
         let id = sec.getAttribute('id');
 
         if(top >= offset && top < offset + height) {
-            navlinks.forEach(link => {
+            navLinks.forEach(link => {
                 link.classList.remove('active');
-                document.queryselector('header nav a[href*=' + id + ']').classList.add('active');
+                document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
             });
 
         };
