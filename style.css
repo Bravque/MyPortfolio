@@ -445,7 +445,8 @@ footer-text p{
         font-size: 5rem;
     }
     .home-img {
-        width: 70vw;
+        width: 90dvw;
+        height: auto;
         margin-top: 4rem;
     }
     .about {
