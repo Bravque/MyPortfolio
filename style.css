@@ -411,10 +411,10 @@ footer-text p{
 @media (max-width: 767px) {
     #menu-icon{
         display: block;
-        margin-right: 10rem;
+        margin-right: 7rem;
     }
     .navbar {
-        position: fixed;
+        position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
@@ -445,8 +445,7 @@ footer-text p{
         font-size: 5rem;
     }
     .home-img {
-        width: 90dvw;
-        height: auto;
+        width: 70vw;
         margin-top: 4rem;
     }
     .about {
