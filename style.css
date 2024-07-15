@@ -480,11 +480,13 @@ footer-text p{
 
 @media (max-width: 365px) {
     .home-img img {
-        width: 90vw;
+        width: 90dvw;
+        height: auto;
     }
 
     .about-img img{
-        width: 90vw;
+        width: 90dvw;
+        height: auto;
     }
 
     .footer{
@@ -494,5 +496,9 @@ footer-text p{
     .footer p{
         text-align: center;
         margin-top: 2rem;
+    }
+
+    .header {
+        display: fixed;
     }
 }
