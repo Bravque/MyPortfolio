@@ -85,6 +85,7 @@ section {
     height: 35vw;
     background: transparent;
     animation: floatImage 4s ease-in-out infinite;
+    margin-left: 10re;
 }
 
 @keyframes floatImage {
@@ -332,7 +333,7 @@ span {
 }
 
 .testimonial__container {
-    width: 80%;
+    width: 75%;
     max-width: 1200px;
     margin-top: 3rem;
     position: relative;
@@ -405,26 +406,6 @@ span {
     text-align: center;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .testimonial__container {
-        width: 90%;
-    }
-
-    .testimonial__container .swiper-button-prev,
-    .testimonial__container .swiper-button-next {
-        font-size: 1.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-
-    .testimonial__description {
-        font-size: 0.9rem;
-    }
-}
-
- 
-
 .contact h2{
     margin-bottom: 3rem;
 }
@@ -475,13 +456,13 @@ span {
     font-size: 1rem;
 }
 
-.notification.success {
+.success {
     background-color: #d4edda; /* Light green for success */
     color: #155724; /* Dark green text */
     border: 1px solid #c3e6cb;
 }
 
-.notification.error {
+.error {
     background-color: #f8d7da; /* Light red for error */
     color: #721c24; /* Dark red text */
     border: 1px solid #f5c6cb;
@@ -524,6 +505,7 @@ footer-text p{
 @media (max-width: 991px) {
     .header {
         padding: 2rem 3%;
+        width: 100%;
     }
 
     section {
@@ -548,8 +530,11 @@ footer-text p{
 @media (max-width: 767px) {
     #menu-icon{
         display: block;
-        margin-right: 10rem;
     }
+    .header {
+        padding: 1rem 2%;
+    }
+
     .navbar {
         position: absolute;
         top: 100%;
@@ -570,7 +555,7 @@ footer-text p{
         display:block;
         font-size: 2rem;
         margin: 3rem 0;
-    }
+    } 
 
     .home{
         flex-direction: column;
@@ -582,8 +567,7 @@ footer-text p{
         font-size: 5rem;
     }
     .home-img {
-        width: 70vw;
-        margin-top: 4rem;
+        display: none;
     }
     .about {
         flex-direction: column-reverse;
@@ -597,6 +581,20 @@ footer-text p{
     }
     .projects-content{
         grid-template-columns: repeat(2,1fr);
+    }
+    .testimonial__container {
+        width: auto;
+    }
+
+    .testimonial__container .swiper-button-prev,
+    .testimonial__container .swiper-button-next {
+        font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .testimonial__description {
+        font-size: 0.9rem;
     }
 }
 
@@ -639,5 +637,6 @@ footer-text p{
 
     .header {
         display: fixed;
+        width: 100%;
     }
 }

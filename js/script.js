@@ -75,44 +75,66 @@ let swiperTestimonial = new Swiper(".testimonial__container", {
 
 /*============== EMAIL NOTIFICATION ===============*/
 
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact');
 
-    const form = event.target;
-    const notification = document.getElementById('notification');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-    // Send form data to Formspree using Fetch API
-    fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Display success notification
-            notification.textContent = 'Message sent successfully!';
-            notification.classList.remove('error');
-            notification.classList.add('success');
-            notification.style.display = 'block';
+            const form = event.target;
+            const notification = document.getElementById('notification');
 
-            // Clear the form
-            form.reset();
-        } else {
-            // Display error notification
-            notification.textContent = 'Failed to send message. Please try again later.';
-            notification.classList.remove('success');
-            notification.classList.add('error');
-            notification.style.display = 'block';
-        }
-    })
-    .catch(error => {
-        // Display error notification
-        notification.textContent = 'An error occurred. Please try again later.';
-        notification.classList.remove('success');
-        notification.classList.add('error');
-        notification.style.display = 'block';
-    });
+            // Send form data to Formspree using Fetch API
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Display success notification
+                    notification.textContent = 'Message sent successfully!';
+                    notification.classList.remove('error');
+                    notification.classList.add('success');
+                    notification.style.display = 'block';
+
+                    // Clear the form
+                    form.reset();
+
+                    // Hide the notification after 5 seconds
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 5000);
+                } else {
+                    // Display error notification
+                    notification.textContent = 'Failed to send message. Please try again later.';
+                    notification.classList.remove('success');
+                    notification.classList.add('error');
+                    notification.style.display = 'block';
+
+                    // Hide the notification after 5 seconds
+                    setTimeout(() => {
+                        notification.style.display = 'none';
+                    }, 5000);
+                }
+            })
+            .catch(error => {
+                // Display error notification
+                notification.textContent = 'An error occurred. Please try again later.';
+                notification.classList.remove('success');
+                notification.classList.add('error');
+                notification.style.display = 'block';
+
+                // Hide the notification after 5 seconds
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 5000);
+            });
+        });
+    } else {
+        console.error('Form with ID "contact-form" not found.');
+    }
 });
-
