@@ -372,11 +372,11 @@ span {
     transition: background-color 0.3s ease;
 }
 
-.testimonial__container .swiper-button-prev:hover,
+/* .testimonial__container .swiper-button-prev:hover,
 .testimonial__container .swiper-button-next:hover {
     background-color: var(--second-bg-color);
     color: var(--second-bg-color);
-}
+} */
 
 .testimonial__container .swiper-button-prev {
     left: 15rem;
