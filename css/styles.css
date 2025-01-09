@@ -26,6 +26,7 @@ html {
 body {
     background: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
 }
 
 section {
@@ -333,13 +334,23 @@ span {
 }
 
 .testimonial__container {
-    width: 75%;
+    width: 90%;
     max-width: 1200px;
-    margin-top: 3rem;
+    padding: 1rem;
+    margin: 0 auto;
     position: relative;
     border-radius: 10px;
     background-color: var(--text-color);
 }
+
+.testimonial__container .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 
 .testimonial__container .swiper-button-prev,
 .testimonial__container .swiper-button-next {
@@ -502,10 +513,15 @@ footer-text p{
 
 /* BreakPoints  */
 
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
 @media (max-width: 991px) {
     .header {
         padding: 2rem 3%;
-        width: 100%;
     }
 
     section {
@@ -517,22 +533,31 @@ footer-text p{
     }
     .projects{
         padding-bottom: 7rem;
+    } 
+
+    .testimonial__container {
+        width: 65%; /* Full width for small screens */
+        padding: 1rem;
     }
+
+    .contact {
+        min-height: auto;
+    }
+
     .contact{
         min-height: auto;
     }
+
+    
 
     .footer {
         padding: 2rem 3%;
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     #menu-icon{
         display: block;
-    }
-    .header {
-        padding: 1rem 2%;
     }
 
     .navbar {
@@ -582,36 +607,44 @@ footer-text p{
     .projects-content{
         grid-template-columns: repeat(2,1fr);
     }
+
     .testimonial__container {
-        width: auto;
+        width: 55%; /* Full width for small screens */
+        padding: 1rem;
     }
 
-    .testimonial__container .swiper-button-prev,
-    .testimonial__container .swiper-button-next {
-        font-size: 1.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-
-    .testimonial__description {
-        font-size: 0.9rem;
-    }
 }
 
 @media (max-width: 617px) {
     .projects-content{
         grid-template-columns: 1fr;
     }
+
+    .testimonial__container {
+        width: 45%; /* Full width for small screens */
+        padding: 1rem;
+    }
+    
 }
 
 @media (max-width: 450px) {
     html {
         font-size: 50%;
-    };
+    }
 
-    .contact form .input-box input {
+    .contact form .input-box input{
         width: 100%;
     }
+
+    .testimonial__container {
+        width: 50rem; /* Use a more flexible percentage */
+        padding: 1rem;
+    }
+
+    .testimonial__container .swiper-slide {
+        
+    }
+
 }
 
 @media (max-width: 365px) {
@@ -626,6 +659,11 @@ footer-text p{
           
     }
 
+    .testimonial__container {
+        width: 25rem; /* Use a more flexible percentage */
+        padding: 1rem;
+    }
+
     .footer{
         flex-direction: column-reverse;
     }
@@ -633,10 +671,5 @@ footer-text p{
     .footer p{
         text-align: center;
         margin-top: 2rem;
-    }
-
-    .header {
-        display: fixed;
-        width: 100%;
     }
 }
