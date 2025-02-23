@@ -92,9 +92,20 @@ document.addEventListener('DOMContentLoaded', function () {
             const message = form.message.value.trim();
 
             // Regular expressions for validation
-            const nameRegex = /^[a-zA-Z\s]+$/;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const mobileRegex = /^\d*$/; // Only digits allowed
+            const nameRegex = /^[A-Z][a-z]+(?:\s[A-Z][a-z]+)+$/; 
+            // First & Last name required, starts with uppercase, no numbers/symbols.
+
+            const emailRegex = /^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // Ensures a valid email format with no consecutive dots.
+
+            const mobileRegex = /^(?:\+?\d{1,3})?[1-9]\d{9,14}$/;
+            // Allows international + country codes or starts with 07 (Kenya), min 10 digits.
+
+            const subjectRegex = /^[a-zA-Z0-9\s]{5,}$/;
+            // Allows only letters, numbers, spaces; at least 5 characters.
+
+            const messageRegex = /^[a-zA-Z0-9.,!?'"()&\s]{20,}$/;
+            // Ensures a meaningful message (min 20 characters, allows punctuation)
 
             // Validation checks
             if (!nameRegex.test(fullName)) {
