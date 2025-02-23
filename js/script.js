@@ -73,19 +73,56 @@ let swiperTestimonial = new Swiper(".testimonial__container", {
     },
   });
 
-/*============== EMAIL NOTIFICATION ===============*/
+/*============== EMAIL NOTIFICATION & FORM VALIDATION ===============*/
 
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact');
+document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.querySelector('.contact form');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission until validated
 
             const form = event.target;
             const notification = document.getElementById('notification');
 
-            // Send form data to Formspree using Fetch API
+            const fullName = form.fullname.value.trim();
+            const email = form.email.value.trim();
+            const mobile = form.mobile.value.trim();
+            const subject = form.subject.value.trim();
+            const message = form.message.value.trim();
+
+            // Regular expressions for validation
+            const nameRegex = /^[a-zA-Z\s]+$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const mobileRegex = /^\d*$/; // Only digits allowed
+
+            // Validation checks
+            if (!nameRegex.test(fullName)) {
+                showNotification('Full Name must contain only letters and spaces.', 'error');
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                showNotification('Enter a valid email address.', 'error');
+                return;
+            }
+
+            if (mobile && !mobileRegex.test(mobile)) {
+                showNotification('Mobile Number should contain only digits.', 'error');
+                return;
+            }
+
+            if (subject.length < 3) {
+                showNotification('Subject must be at least 3 characters long.', 'error');
+                return;
+            }
+
+            if (message.length < 10) {
+                showNotification('Message must be at least 10 characters long.', 'error');
+                return;
+            }
+
+            // If all validations pass, send the form data to Formspree
             fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
@@ -95,46 +132,29 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => {
                 if (response.ok) {
-                    // Display success notification
-                    notification.textContent = 'Message sent successfully!';
-                    notification.classList.remove('error');
-                    notification.classList.add('success');
-                    notification.style.display = 'block';
+                    showNotification('Message sent successfully!', 'success');
+                    form.reset(); // Clear the form
 
-                    // Clear the form
-                    form.reset();
-
-                    // Hide the notification after 5 seconds
-                    setTimeout(() => {
-                        notification.style.display = 'none';
-                    }, 5000);
                 } else {
-                    // Display error notification
-                    notification.textContent = 'Failed to send message. Please try again later.';
-                    notification.classList.remove('success');
-                    notification.classList.add('error');
-                    notification.style.display = 'block';
-
-                    // Hide the notification after 5 seconds
-                    setTimeout(() => {
-                        notification.style.display = 'none';
-                    }, 5000);
+                    showNotification('Failed to send message. Please try again later.', 'error');
                 }
             })
             .catch(error => {
-                // Display error notification
-                notification.textContent = 'An error occurred. Please try again later.';
-                notification.classList.remove('success');
-                notification.classList.add('error');
-                notification.style.display = 'block';
-
-                // Hide the notification after 5 seconds
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 5000);
+                showNotification('An error occurred. Please try again later.', 'error');
             });
         });
     } else {
-        console.error('Form with ID "contact-form" not found.');
+        console.error('Form not found.');
+    }
+
+    function showNotification(message, type) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
+        notification.style.display = 'block';
+
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 5000);
     }
 });
