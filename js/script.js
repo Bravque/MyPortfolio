@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const nameRegex = /^[a-zA-Z]+([ \-']{0,1}[a-zA-Z]+){0,2}[.]{0,1}$/; 
             // First & Last name required, starts with uppercase, no numbers/symbols.
 
-            const emailRegex = /^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const emailRegex = /^[a-zA-Z0-9.*%±]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
             // Ensures a valid email format with no consecutive dots.
 
-            const mobileRegex = /^(?:\+?\d{1,3})?[1-9]\d{9,14}$/;
+            const mobileRegex = /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
             // Allows international + country codes or starts with 07 (Kenya), min 10 digits.
 
             const subjectRegex = /^[a-zA-Z0-9\s]{5,}$/;
