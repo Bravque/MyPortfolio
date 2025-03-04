@@ -91,24 +91,22 @@ document.addEventListener('DOMContentLoaded', function () {
             const subject = form.subject.value.trim();
             const message = form.message.value.trim();
 
-            // Regular expressions for validation
+            // Regular expressions for strict validation
 
-            const nameRegex = /^[A-Z][a-zA-Z]+([ \-'][A-Z][a-zA-Z]+){0,2}[.]?$/;
-            // Requires first & last name to start with uppercase, allows hyphens, apostrophes, and a single optional period.
+            const nameRegex = /^(?:[A-Z][a-z]+(?: [A-Z][a-z]+)?(?: [A-Z][a-z]+)?)$/;
+            // Ensures first and last names start with uppercase, optional middle name, no special symbols.
 
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            // Valid email format, allowing common special characters before "@" and ensuring a proper domain.
+            const emailRegex = /^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // Ensures a valid email format with no consecutive dots.
 
-            const mobileRegex = /^(?:\+?[0-9]{1,4}[-.\s]?)?(?:\(?\d{1,4}\)?[-.\s]?)?\d{6,14}$/;
-            // Supports international numbers with or without "+" and includes country codes.
+            const mobileRegex = /^(?:\+?[1-9]\d{0,3}[-.\s]?)?(?:\(?\d{1,4}\)?[-.\s]?)?\d{6,14}$/;
+            // Allows international numbers with optional country codes and common separators.
 
-            const subjectRegex = /^[a-zA-Z0-9\s,.!?-]{5,}$/;
-            // Allows letters, numbers, spaces, and common punctuation (.,!?-), with a minimum of 5 characters.
+            const subjectRegex = /^[A-Za-z0-9][A-Za-z0-9\s,.!?-]{4,49}$/;
+            // Ensures subject starts with a letter/number, allows common punctuation, and is 5-50 characters long.
 
-            const messageRegex = /^[a-zA-Z0-9.,!?'"()&\s-]{20,}$/;
-            // Ensures a meaningful message with at least 20 characters, allowing punctuation and spaces.
-
-
+            const messageRegex = /^[A-Za-z0-9][A-Za-z0-9\s.,!?'"()&-]{19,499}$/;
+            // Ensures message starts with a letter/number, allows limited punctuation, and is 20-500 characters long.
 
             // Validation checks
             if (!nameRegex.test(fullName)) {
