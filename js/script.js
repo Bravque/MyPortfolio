@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const message = form.message.value.trim();
 
             // Regular expressions for validation
-            const nameRegex = /^[A-Z][a-z]+(?:\s[A-Z][a-z]+)+$/; 
+            const nameRegex = /^[a-zA-Z]+([ \-']{0,1}[a-zA-Z]+){0,2}[.]{0,1}$/; 
             // First & Last name required, starts with uppercase, no numbers/symbols.
 
             const emailRegex = /^(?!.*\.\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
